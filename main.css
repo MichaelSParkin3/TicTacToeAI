@@ -19,15 +19,49 @@ body{
   box-shadow: 0px 0px 8px #fff;
 }
 .x{
-  background-color: #ff1919;
-  box-shadow: 0px 0px 8px #ff1919;
+  background-color: #f2f;
+  box-shadow: 0px 0px 8px #f2f;
+  -webkit-animation: flash linear 1s infinite;
+	animation: flash linear 1s infinite;
 }
 .o{
-  background-color: #1919ff;
-  box-shadow: 0px 0px 8px #1919ff;
+  background-color: #FFDB00;
+  box-shadow: 0px 0px 8px #FFDB00;
+  -webkit-animation: flash linear 1s infinite;
+	animation: flash linear 1s infinite;
 }
 .ai-text{
   margin-top: 10vh;
   color: #ff1919;
   text-shadow: 0 2px 9px #ff1919;
+}
+
+.btn{
+  display: table;
+  margin: auto;
+  margin-top: 5vh;
+  color: #f2f;
+  background: none;
+  border-color: #f2f;
+}
+
+.btn:hover{
+  background: none;
+  color: white;
+}
+
+.flashit{
+  color:#f2f;
+	-webkit-animation: flash linear 1s infinite;
+	animation: flash linear 1s infinite;
+}
+@-webkit-keyframes flash {
+	0% { opacity: 1; }
+	50% { opacity: .5; }
+	100% { opacity: 1; }
+}
+@keyframes flash {
+	0% { opacity: 1; }
+	50% { opacity: .5; }
+	100% { opacity: 1; }
 }

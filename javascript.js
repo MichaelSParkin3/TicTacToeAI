@@ -1,6 +1,6 @@
 // A $( document ).ready() block.
 $( document ).ready(function() {
-var phrases = ["What are you going to do about that!?","You play like a peasant!","PATHETIC!","Are you even trying?"]
+var phrases = ["What are you going to do about that!?","You play like a peasant!","PATHETIC!","Are you even trying?","You're a disgrace to all humans!","I'm not even trying!","I know every possible outcome!","Just give up!"]
 var interval;
 var running = false;
 var wordBuilding = false;
@@ -29,17 +29,17 @@ $( ".tic-box" ).click(function() {
 
     if (winning(board, huPlayer)){
       clearInterval(interval);
-       console.log("h");
+       console.log("h1");
        $( ".ai-text" ).text("What!? IMPOSSIBLE!");
     }
   	else if (winning(board, aiPlayer)){
       clearInterval(interval);
-      console.log("ai");
+      console.log("ai1");
       $( ".ai-text" ).text("Not even a challenge!");
   	}
     else if ((emptyIndexies(board)).length-1 === 0){
       clearInterval(interval);
-    	console.log("tie");
+    	console.log("tie1");
       $( ".ai-text" ).text("Don't get cocky that's not even a win!");
     }else {
 
@@ -74,6 +74,7 @@ $( ".tic-box" ).click(function() {
 
         if (counter >= currentPhraseArray.length) {
           wordBuilding = false;
+          audio.currentTime = 0
           audio.pause();
         } else {
 
@@ -90,18 +91,27 @@ $( ".tic-box" ).click(function() {
     board = scanBoard();
     if (winning(board, huPlayer)){
       clearInterval(interval);
+      audio.currentTime = 0
+      audio.pause();
        console.log("h");
-       $( ".ai-text" ).text("What!? IMPOSSIBLE!");
+       $( ".ai-text" ).text(".");
+       underType("What!? IMPOSSIBLE!")
     }
   	else if (winning(board, aiPlayer)){
       clearInterval(interval);
+      audio.currentTime = 0
+      audio.pause();
       console.log("ai");
-      $( ".ai-text" ).text("Not even a challenge!");
+      $( ".ai-text" ).text(".");
+      underType("Not even a challenge!")
   	}
     else if ((emptyIndexies(board)).length-1 === 0){
       clearInterval(interval);
+      audio.currentTime = 0
+      audio.pause();
     	console.log("tie");
-      $( ".ai-text" ).text("Don't get cocky that's not even a win!");
+      $( ".ai-text" ).text(".");
+      underType("Don't get cocky that's not even a win!")
     }
 
   }
@@ -243,6 +253,33 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+//starts undertale style message
+function underType(msg) {
+    var currentMsg = msg;
+    var currentMsgArray = currentMsg.split("");
+    var msgCounter = 0;
+    $( ".ai-text" ).text(".");
+    audio.play();
+
+
+
+    interval = setInterval(function(){
+
+      if (msgCounter >= currentMsgArray.length) {
+        clearInterval(interval);
+        audio.pause();
+      } else {
+
+      var currentAIText = $( ".ai-text" ).text();
+      currentAIText = currentAIText.replace("."," ");
+      $( ".ai-text" ).text(currentAIText + currentMsgArray[msgCounter]);
+      msgCounter++;
+
+    }
+
+  }, 90);
+
+  }
 
 
 });
