@@ -1,5 +1,6 @@
 body{
   background-color: black;
+  cursor:url(cursor.cur), auto;
 }
 .tic-box{
   width: 120px;
@@ -43,11 +44,16 @@ body{
   color: #f2f;
   background: none;
   border-color: #f2f;
+  text-shadow: 0 2px 9px #ff1919;
+  box-shadow: 0px 0px 8px #ff1919;
+  opacity: .5;
 }
 
 .btn:hover{
   background: none;
-  color: white;
+  color: #f2f;
+  border-color: #f2f;
+  opacity: 1;
 }
 
 .flashit{
@@ -65,3 +71,12 @@ body{
 	50% { opacity: .5; }
 	100% { opacity: 1; }
 }
+.bounce {
+    -webkit-animation-name: bounce;
+    animation-name: bounce;
+}
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;

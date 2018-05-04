@@ -8,6 +8,11 @@ var currentPhrase;
 var currentPhraseArray;
 var counter;
 var audio = new Audio('undertale.mp3');
+var flowey = new Audio('flowey.mp3');
+var attack = new Audio('attack.mp3');
+var battle = new Audio('battle.mp3');
+var escape = new Audio('saving.mp3');
+attack.volume = 0.2;
   // human
   var huPlayer = "o";
   // ai
@@ -16,7 +21,11 @@ var calls = 0;
 var board = scanBoard();
 console.log(calls);
 
+
+
 $( ".tic-box" ).click(function() {
+  attack.currentTime = 0;
+  attack.play();
   var classList = document.getElementById(this.id).className.split(/\s+/);
   //Check if space has alrady been used by a player
   if (classList.includes("x") || classList.includes("o")) {
@@ -28,19 +37,25 @@ $( ".tic-box" ).click(function() {
     console.log((emptyIndexies(board)).length);
 
     if (winning(board, huPlayer)){
-      clearInterval(interval);
+
        console.log("h1");
-       $( ".ai-text" ).text("What!? IMPOSSIBLE!");
+       if (classList.includes("x") == false && classList.includes("o") == false) {
+         $( "#"+(this.id).toString() ).addClass( "o" );
+       }
     }
   	else if (winning(board, aiPlayer)){
-      clearInterval(interval);
+
       console.log("ai1");
-      $( ".ai-text" ).text("Not even a challenge!");
+      if (classList.includes("x") == false && classList.includes("o") == false) {
+        $( "#"+(this.id).toString() ).addClass( "o" );
+      }
   	}
     else if ((emptyIndexies(board)).length-1 === 0){
-      clearInterval(interval);
+
     	console.log("tie1");
-      $( ".ai-text" ).text("Don't get cocky that's not even a win!");
+      if (classList.includes("x") == false && classList.includes("o") == false) {
+        $( "#"+(this.id).toString() ).addClass( "o" );
+      }
     }else {
 
 
@@ -103,6 +118,8 @@ $( ".tic-box" ).click(function() {
       audio.pause();
       console.log("ai");
       $( ".ai-text" ).text(".");
+      winLine(board, aiPlayer);
+      flowey.play();
       underType("Not even a challenge!")
   	}
     else if ((emptyIndexies(board)).length-1 === 0){
@@ -111,6 +128,7 @@ $( ".tic-box" ).click(function() {
       audio.pause();
     	console.log("tie");
       $( ".ai-text" ).text(".");
+      escape.play();
       underType("Don't get cocky that's not even a win!")
     }
 
@@ -219,7 +237,46 @@ $( ".tic-box" ).click(function() {
 
 
 
-
+//Add flashy animations to winning line
+function winLine (board, player) {
+  var indexArray = [];
+  if (board[0] == player && board[1] == player && board[2] == player) {
+    indexArray.push("0");
+    indexArray.push("1");
+    indexArray.push("2");
+  } else if (board[3] == player && board[4] == player && board[5] == player) {
+    indexArray.push("3");
+    indexArray.push("4");
+    indexArray.push("5");
+  } else if (board[6] == player && board[7] == player && board[8] == player) {
+    indexArray.push("6");
+    indexArray.push("7");
+    indexArray.push("8");
+  }else if (board[0] == player && board[3] == player && board[6] == player) {
+    indexArray.push("0");
+    indexArray.push("3");
+    indexArray.push("6");
+  }else if (board[1] == player && board[4] == player && board[7] == player) {
+    indexArray.push("1");
+    indexArray.push("4");
+    indexArray.push("7");
+  }else if (board[2] == player && board[5] == player && board[8] == player) {
+    indexArray.push("2");
+    indexArray.push("5");
+    indexArray.push("8");
+  }else if (board[0] == player && board[4] == player && board[8] == player) {
+    indexArray.push("0");
+    indexArray.push("4");
+    indexArray.push("8");
+  }else if (board[2] == player && board[4] == player && board[6] == player) {
+    indexArray.push("2");
+    indexArray.push("4");
+    indexArray.push("6");
+  }
+  $( "#"+indexArray[0]).addClass( "bounce" );
+  $( "#"+indexArray[1]).addClass( "bounce" );
+  $( "#"+indexArray[2]).addClass( "bounce" );
+}
 
 
 
