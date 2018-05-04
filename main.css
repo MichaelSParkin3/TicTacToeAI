@@ -1,22 +1,33 @@
 body{
-  background-color: white;
+  background-color: black;
 }
 .tic-box{
   width: 120px;
   height: 120px;
   display: inline-block;
   background-color: black;
-  margin-top: 0.5px;
+  margin-top: 0.05px;
+
 }
 .tic-container{
   display: table;
   margin: auto;
-  margin-top: 20vh;
-  
+  margin-top: 10vh;
+  background-color: white;
+  padding:6px;
+  padding-bottom: 0px;
+  box-shadow: 0px 0px 8px #fff;
 }
 .x{
-  background-color: blue;
+  background-color: #ff1919;
+  box-shadow: 0px 0px 8px #ff1919;
 }
 .o{
-  background-color: orange;
+  background-color: #1919ff;
+  box-shadow: 0px 0px 8px #1919ff;
+}
+.ai-text{
+  margin-top: 10vh;
+  color: #ff1919;
+  text-shadow: 0 2px 9px #ff1919;
 }
